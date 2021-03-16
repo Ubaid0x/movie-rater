@@ -1,10 +1,31 @@
 .App {
-  text-align: center;
+  /* text-align: center; */
+  min-height: 100vh;
+  background-color: #282c34;
+  padding: 20px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.orange {
+  color: orange;
+}
+
+.rate-container {
+  margin-top: 20px;
+  border-top: 1px solid #fff;
+}
+
+.purple {
+  color: purple;
+}
+
+.movie-item {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+}
+
+.movie-item svg {
+  font-size: 1.5rem;
+  margin: 26px 6px
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -14,14 +35,19 @@
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
+  /* display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: center; */
+  text-align: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+.Layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
 }
 
 .App-link {
