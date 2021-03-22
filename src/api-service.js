@@ -12,4 +12,25 @@ export class API {
             body: JSON.stringify( body )         
         }).then(res => res.json())
     }
+
+    static createMovie(body){
+        return fetch("http://127.0.0.1:8000/api/movies/", {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Token ${token}`
+            },
+            body: JSON.stringify( body )         
+        }).then(res => res.json())
+    }
+
+    static deleteMovie(mov_id){
+        return fetch(`http://127.0.0.1:8000/api/movies/${mov_id}/`, {
+            method: 'DELETE',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Token ${token}`
+            }        
+        })
+    }
 }

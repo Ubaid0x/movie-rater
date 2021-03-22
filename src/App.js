@@ -34,7 +34,7 @@ function App() {
 
   const updateMovie = (movie) => {
     const newMovies = movies?.map((mov) =>{
-      if(mov.id == movie.id){
+      if(mov.id === movie.id){
         return movie
       }
       return mov
@@ -42,21 +42,41 @@ function App() {
     setMovie(newMovies)
   }
 
+  const newMovie = () => {
+    setEditMovie({ title: '', description: '' });
+    setSelectedMovie(null);
+  }
+
+  const movieCreated = (movie) => {
+    const newMovies = [...movies, movie];
+    setMovie(newMovies);
+  }
+
+  const movieDeleted = (movie) => {
+    const newMovies = movies?.filter(mov => mov.id !== movie.id)
+    setMovie(newMovies);
+  }
+
   return (
     <div className="App">
       <header className="App-header">
         <h1> Movie Rater </h1>
         <div className="Layout">
+          <div>
             <MovieList 
               movieClicked={(movie) => loadMovie(movie)}
               editClickMovie={(movie) => editMovieClicked(movie)}
+              movieDeleted={(movie) => movieDeleted(movie)}
               movies={movies} />
+            <button onClick={newMovie}>New Movie</button>
+          </div>
             <MovieDetail 
               movieClicked={(movie) => loadMovie(movie)}
               movie={selectedMovie} 
               updateMovie={loadMovie}
               />  
             {editMovie && <MovieForm movie={editMovie} 
+            createMovie={movieCreated}
             updateMovie={updateMovie} />}
         </div>
       </header>
