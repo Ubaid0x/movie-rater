@@ -1,9 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { API } from '../api-service';
+import { TokenContext } from '../index';
 
 const Auth = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('')
+
+    const [ token, setToken ] = useContext(TokenContext)
+
+    useEffect(() => {
+        console.log({token})
+        if(token)
+            window.location.href = "/movies"
+    }, [token])
 
     const loginClicked = () => {
         if(!username || !password){
@@ -11,7 +20,10 @@ const Auth = () => {
         }
         else{
             API.loginUser({username, password})
-                .then(res => console.log({res}))
+                .then(res => {
+                    console.log({res})
+                    setToken(res.token)
+                })
                 .catch(err => console.log({err}))
         }
     }
